@@ -1011,7 +1011,7 @@ debug@^4.1.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.4:
   dependencies:
     ms "2.1.2"
 
-"debug@github:ngokevin/debug#noTimestamp":
+debug@ngokevin/debug#noTimestamp:
   version "2.2.0"
   resolved "https://codeload.github.com/ngokevin/debug/tar.gz/ef5f8e66d49ce8bc64c6f282c15f8b7164409e3a"
 
@@ -1886,6 +1886,11 @@ present@0.0.6:
   resolved "https://registry.yarnpkg.com/present/-/present-0.0.6.tgz#9eeff700daa9e998613352e47f7ac2324d4faf02"
   integrity sha512-8HGGcsH0xefDkhtWzXhigzieKtervWPQgyX8RtQD3cKr4wU307j8XANVSaZLxbR0+1EBonCJNOdUrQ7hbk3Kiw==
 
+prettier@^2.8.8:
+  version "2.8.8"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
+  integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
+
 process@^0.11.10:
   version "0.11.10"
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
@@ -2120,7 +2125,7 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==
 
-"three-bmfont-text@github:dmarcos/three-bmfont-text#21d017046216e318362c48abd1a48bddfb6e0733":
+three-bmfont-text@dmarcos/three-bmfont-text#21d017046216e318362c48abd1a48bddfb6e0733:
   version "2.4.0"
   resolved "https://codeload.github.com/dmarcos/three-bmfont-text/tar.gz/21d017046216e318362c48abd1a48bddfb6e0733"
   dependencies:
