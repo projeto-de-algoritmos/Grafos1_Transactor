@@ -46,6 +46,11 @@ export default function App() {
     });
   }
 
+  const start = () => {
+    console.log("entrou")
+    
+  }
+
   return (
     <div className="App">
       <ForceGraph2D
@@ -60,17 +65,17 @@ export default function App() {
         linkCurvature={0.25}
       />
       <div className="form">
-        <label>Quantide de nós:</label>
-        <input
+        <label className='h1'>Quantide de nós:</label>
+        <input 
           type="number"
           placeholder="Digite a quatidade de nós"
           className="nodeInputs"
           value={data.nodes.length}
           onChange={e => handleNodeChange(parseInt(e.target.value))}
         />
-        <button>Começar</button>
+        <button className="btnstart" onClick={start}>Começar</button>
 
-        <label>Lista de transações</label>
+        <label className='h2'>Lista de transações</label>
         <div className="list">
           <span>Fulano {'>'} Beltrano R$ 12,00</span>
           <span>Fulano {'>'} Beltrano</span>
