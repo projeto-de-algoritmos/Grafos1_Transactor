@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ForceGraph3D } from "react-force-graph";
+import { ForceGraph2D } from "react-force-graph";
 
 const INITIAL_NODE_NUMBERS = 15;
 const initialNodes = Array.from({ length: INITIAL_NODE_NUMBERS }, (_, i) => i);
@@ -36,7 +36,10 @@ export default function App() {
   }, []);
   return (
     <div className="App">
-      <ForceGraph3D graphData={data} nodeLabel="id" nodeAutoColorBy="group" />,
+      <button>start</button>
+      <br/>
+      <button>stop</button>
+      <ForceGraph2D graphData={data} nodeLabel="id" nodeAutoColorBy="group" />
     </div>
   );
-}
+} 
