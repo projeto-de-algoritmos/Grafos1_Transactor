@@ -1,93 +1,28 @@
-import { useEffect, useRef, useState } from 'react';
-import { ForceGraph2D } from 'react-force-graph';
+import { useState } from 'react';
 import './App.css';
-import Graph from './lib/Graph';
-
-const INITIAL_NODE_NUMBERS = 15;
+import Network from './components/Network';
 
 export default function App() {
-  const fgRef = useRef();
-  const network = new Graph();
-
-  for (let i = 0; i < INITIAL_NODE_NUMBERS; i++) {
-    network.addNode(`Node: ${i}`, 100);
-  }
-
-  const [data, setData] = useState({
-    nodes: network.getAllNodes(),
-    links: [],
-  });
-
-  useEffect(() => {
-    setInterval(() => {
-      // Add a new connected node every second
-      setData(({ nodes, links }: any) => {
-        const nodesLength = nodes.length - 1;
-        const sourceRandomNode = Math.ceil(Math.random() * nodesLength);
-        let targetRandomNode = Math.ceil(Math.random() * nodesLength);
-
-        if (sourceRandomNode === targetRandomNode) targetRandomNode--;
-
-        const newNodes = [...nodes];
-
-        network.addEdge(sourceRandomNode, targetRandomNode, 10);
-
-        return {
-          nodes: newNodes,
-          links: [
-            ...links,
-            { source: sourceRandomNode, target: targetRandomNode },
-          ],
-        };
-      });
-    }, 3000);
-  }, []);
-
-  function handleNodeChange(number: number) {
-    const newNodes = Array.from({ length: number }, (_, i) => i);
-    setData({
-      nodes: newNodes.map(id => ({ id })),
-      links: [],
-    });
-  }
-
-  const start = () => {
-    console.log('entrou');
-  };
+  const [numberOfNodes, setNumberOfNodes] = useState(0);
+  const [confirm, setConfirm] = useState(false);
 
   return (
     <div className="App">
-      <ForceGraph2D
-        ref={fgRef}
-        cooldownTicks={100}
-        onEngineStop={() => fgRef.current.zoomToFit(400)}
-        graphData={data}
-        nodeLabel="id"
-        nodeAutoColorBy="group"
-        linkDirectionalArrowLength={2.5}
-        linkDirectionalArrowRelPos={1}
-        linkCurvature={0.25}
-      />
-      <div className="form">
-        <label className="h1">Quantide de nós:</label>
-        <input
-          type="number"
-          placeholder="Digite a quatidade de nós"
-          className="nodeInputs"
-          value={data.nodes.length}
-          onChange={e => handleNodeChange(parseInt(e.target.value))}
-        />
-        <button className="btnstart" onClick={start}>
-          Começar
-        </button>
-
-        <label className="h2">Lista de transações</label>
-        <div className="list">
-          <span>Fulano {'>'} Beltrano R$ 12,00</span>
-          <span>Fulano {'>'} Beltrano</span>
-          <span>Fulano {'>'} Beltrano</span>
+      {confirm ? (
+        <Network numberOfNodes={numberOfNodes} />
+      ) : (
+        <div className="form">
+          <label className="h1">Digite a quatidade de nós</label>
+          <input
+            type="number"
+            placeholder="Digite a quatidade de nós"
+            className="nodeInputs"
+            value={numberOfNodes}
+            onChange={e => setNumberOfNodes(parseInt(e.target.value))}
+          />
+          <button onClick={() => setConfirm(true)}>Confirmar</button>
         </div>
-      </div>
+      )}
     </div>
   );
 }
