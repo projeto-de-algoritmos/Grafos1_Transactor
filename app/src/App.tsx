@@ -17,31 +17,43 @@ export default function App() {
     nodes: network.getAllNodes(),
     links: [],
   });
+  const [running, setRunning] = useState(false);
+  const [intervals, setIntervals] = useState<number[]>([]);
 
   useEffect(() => {
-    setInterval(() => {
-      // Add a new connected node every second
-      setData(({ nodes, links }: any) => {
-        const nodesLength = nodes.length - 1;
-        const sourceRandomNode = Math.ceil(Math.random() * nodesLength);
-        let targetRandomNode = Math.ceil(Math.random() * nodesLength);
+    if (running) {
+      const id = setInterval(() => {
+        const newIntervals = [...intervals];
+        newIntervals.push(id);
+        setIntervals(newIntervals);
+        setData(({ nodes, links }: any) => {
+          const nodesLength = nodes.length - 1;
+          const sourceRandomNode = Math.ceil(Math.random() * nodesLength);
+          let targetRandomNode = Math.ceil(Math.random() * nodesLength);
 
-        if (sourceRandomNode === targetRandomNode) targetRandomNode--;
+          if (sourceRandomNode === targetRandomNode) targetRandomNode--;
 
-        const newNodes = [...nodes];
+          const newNodes = [...nodes];
 
-        network.addEdge(sourceRandomNode, targetRandomNode, 10);
+          network.addEdge(sourceRandomNode, targetRandomNode, 10);
 
-        return {
-          nodes: newNodes,
-          links: [
-            ...links,
-            { source: sourceRandomNode, target: targetRandomNode },
-          ],
-        };
+          return {
+            nodes: newNodes,
+            links: [
+              ...links,
+              { source: sourceRandomNode, target: targetRandomNode },
+            ],
+          };
+        });
+      }, 3000);
+    } else {
+      console.log(intervals);
+      intervals.forEach(id => {
+        clearInterval(id);
       });
-    }, 3000);
-  }, []);
+      setIntervals([]);
+    }
+  }, [running]);
 
   function handleNodeChange(number: number) {
     const newNodes = Array.from({ length: number }, (_, i) => i);
@@ -52,7 +64,8 @@ export default function App() {
   }
 
   const start = () => {
-    console.log('entrou');
+    setRunning(!running);
+    console.log(running);
   };
 
   return (
@@ -78,7 +91,7 @@ export default function App() {
           onChange={e => handleNodeChange(parseInt(e.target.value))}
         />
         <button className="btnstart" onClick={start}>
-          Começar
+          {running ? 'Parar' : 'Começar'}
         </button>
 
         <label className="h2">Lista de transações</label>
