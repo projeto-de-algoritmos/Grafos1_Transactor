@@ -1,17 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 import { ForceGraph2D } from 'react-force-graph';
 import './App.css';
+import Graph from './lib/Graph';
 
 const INITIAL_NODE_NUMBERS = 15;
-const initialNodes = Array.from({ length: INITIAL_NODE_NUMBERS }, (_, i) => i);
 
 export default function App() {
   const fgRef = useRef();
+  const network = new Graph();
 
-  const [data, setData] = useState<any>({
-    nodes: initialNodes.map(index => ({
-      id: index,
-    })),
+  for (let i = 0; i < INITIAL_NODE_NUMBERS; i++) {
+    network.addNode(`Node: ${i}`, 100);
+  }
+
+  const [data, setData] = useState({
+    nodes: network.getAllNodes(),
     links: [],
   });
 
@@ -26,6 +29,8 @@ export default function App() {
         if (sourceRandomNode === targetRandomNode) targetRandomNode--;
 
         const newNodes = [...nodes];
+
+        network.addEdge(sourceRandomNode, targetRandomNode, 10);
 
         return {
           nodes: newNodes,
@@ -47,9 +52,8 @@ export default function App() {
   }
 
   const start = () => {
-    console.log("entrou")
-    
-  }
+    console.log('entrou');
+  };
 
   return (
     <div className="App">
@@ -65,17 +69,19 @@ export default function App() {
         linkCurvature={0.25}
       />
       <div className="form">
-        <label className='h1'>Quantide de nós:</label>
-        <input 
+        <label className="h1">Quantide de nós:</label>
+        <input
           type="number"
           placeholder="Digite a quatidade de nós"
           className="nodeInputs"
           value={data.nodes.length}
           onChange={e => handleNodeChange(parseInt(e.target.value))}
         />
-        <button className="btnstart" onClick={start}>Começar</button>
+        <button className="btnstart" onClick={start}>
+          Começar
+        </button>
 
-        <label className='h2'>Lista de transações</label>
+        <label className="h2">Lista de transações</label>
         <div className="list">
           <span>Fulano {'>'} Beltrano R$ 12,00</span>
           <span>Fulano {'>'} Beltrano</span>
