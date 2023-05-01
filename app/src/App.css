@@ -9,11 +9,12 @@
   position: absolute;
   top: 50px;
   right: 50px;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   padding: 0 10px;
+  border-radius: 8px;
 }
 
 .list {
@@ -24,6 +25,8 @@
   overflow-y: scroll;
   margin-bottom: 5px;
   background-color: #ccc;
+  border-color: black;
+  border-radius: 8px;
 }
 
 .h1 {
@@ -52,4 +55,5 @@
   border-radius: 8px;
   padding: 0.5rem;
   font-size: 0.9rem;
+  border-color: black;
 }
