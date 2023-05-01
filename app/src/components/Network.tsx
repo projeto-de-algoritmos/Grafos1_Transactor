@@ -46,7 +46,7 @@ export default function Network({ numberOfNodes }: { numberOfNodes: number }) {
 
           setTransactions(transactions => [
             ...transactions,
-            `${sourceNode?.name} - ID: ${sourceNode?.id} > ${targetNode?.name} ID: ${targetNode?.id} R$10,00`,
+            `${sourceNode?.name} > ${targetNode?.name} R$10,00`,
           ]);
           return {
             nodes: newNodes,
