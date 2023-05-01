@@ -1,5 +1,8 @@
+import { faker } from '@faker-js/faker';
+
 interface Node {
   id: number;
+  img: any;
   name: string;
   balance: number;
   edges: Map<number, number>;
@@ -15,11 +18,14 @@ export class Graph {
   }
 
   addNode(name: string, balance: number): void {
+    const img = new Image();
+    img.src = faker.image.avatar();
     this.lastNodeId++;
     this.nodes.set(this.lastNodeId, {
       id: this.lastNodeId,
       name,
       balance,
+      img,
       edges: new Map(),
     });
   }
@@ -42,6 +48,10 @@ export class Graph {
     return 0;
   }
 
+  getNode(id: number): Node | undefined {
+    return this.nodes.get(id);
+  }
+
   getHighestBalance(): Node | null {
     let highestBalance = -Infinity;
     let personWithHighestBalance: Node | null = null;
@@ -50,17 +60,19 @@ export class Graph {
       if (node.balance > highestBalance) {
         highestBalance = node.balance;
         personWithHighestBalance = node;
+      } else if (node.balance === highestBalance) {
+        return null;
       }
     }
 
     return personWithHighestBalance;
   }
 
-  getAllNodes(): { id: number }[] {
-    const nodesArray: { id: number }[] = [];
+  getAllNodes(): Node[] {
+    const nodesArray: Node[] = [];
 
     for (const node of this.nodes.values()) {
-      nodesArray.push({ id: node.id });
+      nodesArray.push(node);
     }
 
     return nodesArray;
