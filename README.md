@@ -15,6 +15,10 @@
 
 É um projeto que simula e mapia através de nós e arestas mostrando as transações que foram realizadas pelos "usuários", mostrando o grafo com as transações, uma tabela com o histórico de transações e a pessoa que ficou com mais dinheiro.
 
+## Vídeo
+
+[Vídeo Explicativo](https://www.youtube.com/watch?v=OjwMvEU5LWw)
+
 ## Screenshots
 Tela de início (sem quantidade de nós definidos)
 ![image](https://user-images.githubusercontent.com/71887485/235544877-bc7dc701-09ef-42c5-90d3-e54d162e2dd8.png)
