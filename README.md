@@ -17,7 +17,7 @@
 
 ## Vídeo
 
-[Vídeo Explicativo](https://www.youtube.com/watch?v=OjwMvEU5LWw)
+[Vídeo Explicativo](/video.mp4)
 
 ## Screenshots
 Tela de início (sem quantidade de nós definidos)
